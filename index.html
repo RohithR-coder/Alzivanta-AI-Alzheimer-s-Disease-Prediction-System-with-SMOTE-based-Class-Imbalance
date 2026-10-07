@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's Disease Prediction System - AI Clinical Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand-block">
+                <span class="brain-icon">🧠</span>
+                <h1>NeuroPredict</h1>
+                <p>AI Clinical Tool</p>
+            </div>
+            <nav>
+                <button class="nav-item active" data-target="dataView">
+                    <span class="icon">📊</span>
+                    Model Dashboard
+                </button>
+                <button class="nav-item" data-target="inputView">
+                    <span class="icon">📋</span>
+                    Patient Assessment
+                </button>
+                <button class="nav-item" data-target="outputView">
+                    <span class="icon">🔬</span>
+                    Prediction Results
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="model-info">
+                    <div class="model-status">
+                        <span class="indicator online"></span>
+                        Model: ANN v2.4
+                    </div>
+                    <div class="last-updated">Updated: Today</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="user-info">
+                    <span class="avatar">👨‍⚕️</span>
+                    <div>
+                        <div class="doctor-name">Dr. Sarah Jenkins</div>
+                        <div class="date" id="currentDate"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- View 1: Data & Results -->
+            <section class="view active" id="dataView">
+                <div class="view-header">
+                    <h2>Model Performance Dashboard</h2>
+                    <p>Analysis of the Artificial Neural Network model on the Alzheimer's dataset.</p>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Accuracy</div>
+                        <div class="stat-value">94.2%</div>
+                        <div class="stat-desc">Overall correctness</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Precision</div>
+                        <div class="stat-value">93.8%</div>
+                        <div class="stat-desc">True positive rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Recall</div>
+                        <div class="stat-value">95.1%</div>
+                        <div class="stat-desc">Sensitivity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">F1-Score</div>
+                        <div class="stat-value">94.4%</div>
+                        <div class="stat-desc">Harmonic mean</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">MCC</div>
+                        <div class="stat-value">0.886</div>
+                        <div class="stat-desc">Correlation coefficient</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">ROC-AUC</div>
+                        <div class="stat-value">0.981</div>
+                        <div class="stat-desc">Area under curve</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Model Comparison</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Accuracy</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1</th>
+                                    <th>MCC</th>
+                                    <th>ROC-AUC</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td>ANN (MLP)</td>
+                                    <td>94.2%</td>
+                                    <td>93.8%</td>
+                                    <td>95.1%</td>
+                                    <td>94.4%</td>
+                                    <td>0.886</td>
+                                    <td>0.981</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient Boosting</td>
+                                    <td>92.5%</td>
+                                    <td>91.8%</td>
+                                    <td>93.0%</td>
+                                    <td>92.4%</td>
+                                    <td>0.850</td>
+                                    <td>0.965</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>SVM</td>
+                                    <td>91.0%</td>
+                                    <td>90.1%</td>
+                                    <td>91.5%</td>
+                                    <td>90.8%</td>
+                                    <td>0.820</td>
+                                    <td>0.952</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Random Forest</td>
+                                    <td>89.7%</td>
+                                    <td>88.5%</td>
+                                    <td>90.1%</td>
+                                    <td>89.3%</td>
+                                    <td>0.795</td>
+                                    <td>0.932</td>
+                                    <td>⭐⭐⭐⭐☆</td>
+                                </tr>
+                                <tr>
+                                    <td>Logistic Regression (Slow Learner)</td>
+                                    <td>82.1%</td>
+                                    <td>81.4%</td>
+                                    <td>82.8%</td>
+                                    <td>82.1%</td>
+                                    <td>0.642</td>
+                                    <td>0.865</td>
+                                    <td>⭐⭐⭐☆☆</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid two-col">
+                    <div class="dashboard-card">
+                        <h3>SMOTE Impact (Class Balancing)</h3>
+                        <div class="smote-comparison">
+                            <div class="smote-card before">
+                                <h4>Before SMOTE</h4>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: 82%;">82.0%</div>
+                                </div>
+                                <p class="smote-desc">Imbalanced (20/80 split). High bias towards negative class.</p>
+                            </div>
+                            <div class="smote-card after">
+                                <h4>After SMOTE</h4>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: 94.2%;">94.2%</div>
+                                </div>
+                                <p class="smote-desc">Balanced (50/50 split). Improved generalization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Confusion Matrix (ANN)</h3>
+                        <div class="confusion-matrix">
+                            <div class="cm-cell true-negative">
+                                <span class="cm-label">True Negative</span>
+                                <span class="cm-value">312</span>
+                            </div>
+                            <div class="cm-cell false-positive">
+                                <span class="cm-label">False Positive</span>
+                                <span class="cm-value">21</span>
+                            </div>
+                            <div class="cm-cell false-negative">
+                                <span class="cm-label">False Negative</span>
+                                <span class="cm-value">16</span>
+                            </div>
+                            <div class="cm-cell true-positive">
+                                <span class="cm-label">True Positive</span>
+                                <span class="cm-value">308</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Dataset Overview</h3>
+                    <div class="dataset-stats">
+                        <div class="d-stat"><strong>Total Patients:</strong> 2,149</div>
+                        <div class="d-stat"><strong>Features:</strong> 33</div>
+                        <div class="d-stat"><strong>Original Split:</strong> 20% Positive / 80% Negative</div>
+                        <div class="d-stat"><strong>Preprocessing:</strong> SMOTE applied for class balancing</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 2: Patient Input -->
+            <section class="view" id="inputView">
+                <div class="view-header">
+                    <h2>Patient Assessment Form</h2>
+                    <p>Enter patient demographics, history, and clinical measurements to run the prediction model.</p>
+                </div>
+
+                <form id="predictionForm" class="patient-form">
+                    <!-- Demographics -->
+                    <div class="form-section">
+                        <h3><span class="icon">👤</span> Demographics</h3>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="age">Age (60-90)</label>
+                                <input type="number" id="age" name="age" min="60" max="90" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select...</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="ethnicity">Ethnicity</label>
+                                <select id="ethnicity" name="ethnicity" required>
+                                    <option value="">Select...</option>
+                                    <option value="Caucasian">Caucasian</option>
+                                    <option value="African American">African American</option>
+                                    <option value="Asian">Asian</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="education">Education Level (0-20 years)</label>
+                                <input type="number" id="education" name="education" min="0" max="20" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Factors -->
+                    <div class="form-section">
+                        <h3><span class="icon">🏃</span> Lifestyle Factors</h3>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="bmi">BMI (15-40)</label>
+                                <input type="number" id="bmi" name="bmi" min="15" max="40" step="0.1" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="smoking">Smoking</label>
+                                <select id="smoking" name="smoking" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group range-group">
+                                <label for="alcohol">Alcohol (units/wk): <span class="range-val" id="alcoholVal">10</span></label>
+                                <input type="range" id="alcohol" name="alcohol" min="0" max="20" value="10">
+                            </div>
+                            <div class="input-group range-group">
+                                <label for="physicalActivity">Physical Activity (hrs/wk): <span class="range-val" id="physicalActivityVal">5</span></label>
+                                <input type="range" id="physicalActivity" name="physicalActivity" min="0" max="10" value="5">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group range-group">
+                                <label for="dietQuality">Diet Quality (0-10): <span class="range-val" id="dietQualityVal">5</span></label>
+                                <input type="range" id="dietQuality" name="dietQuality" min="0" max="10" value="5">
+                            </div>
+                            <div class="input-group range-group">
+                                <label for="sleepQuality">Sleep Quality (1-10): <span class="range-val" id="sleepQualityVal">5</span></label>
+                                <input type="range" id="sleepQuality" name="sleepQuality" min="1" max="10" value="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medical History -->
+                    <div class="form-section">
+                        <h3><span class="icon">🏥</span> Medical History</h3>
+                        <div class="form-row three-col">
+                            <div class="input-group">
+                                <label for="familyHistory">Family History of Alzheimer's</label>
+                                <select id="familyHistory" name="familyHistory" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="cardio">Cardiovascular Disease</label>
+                                <select id="cardio" name="cardio" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="diabetes">Diabetes</label>
+                                <select id="diabetes" name="diabetes" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row three-col">
+                            <div class="input-group">
+                                <label for="depression">Depression</label>
+                                <select id="depression" name="depression" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="headInjury">Head Injury</label>
+                                <select id="headInjury" name="headInjury" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="hypertension">Hypertension</label>
+                                <select id="hypertension" name="hypertension" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Measurements -->
+                    <div class="form-section">
+                        <h3><span class="icon">💉</span> Clinical Measurements</h3>
+                        <div class="form-row three-col">
+                            <div class="input-group">
+                                <label for="sysBP">Systolic BP (90-180)</label>
+                                <input type="number" id="sysBP" name="sysBP" min="90" max="180" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="diaBP">Diastolic BP (60-120)</label>
+                                <input type="number" id="diaBP" name="diaBP" min="60" max="120" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="cholTotal">Cholesterol Total (150-300)</label>
+                                <input type="number" id="cholTotal" name="cholTotal" min="150" max="300" required>
+                            </div>
+                        </div>
+                        <div class="form-row three-col">
+                            <div class="input-group">
+                                <label for="cholLDL">Cholesterol LDL (50-200)</label>
+                                <input type="number" id="cholLDL" name="cholLDL" min="50" max="200" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="cholHDL">Cholesterol HDL (20-100)</label>
+                                <input type="number" id="cholHDL" name="cholHDL" min="20" max="100" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="cholTri">Triglycerides (50-400)</label>
+                                <input type="number" id="cholTri" name="cholTri" min="50" max="400" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Assessment -->
+                    <div class="form-section">
+                        <h3><span class="icon">🧩</span> Cognitive Assessment</h3>
+                        <div class="form-row three-col">
+                            <div class="input-group">
+                                <label for="mmse">MMSE Score (0-30)</label>
+                                <input type="number" id="mmse" name="mmse" min="0" max="30" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="memoryComplaints">Memory Complaints</label>
+                                <select id="memoryComplaints" name="memoryComplaints" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="behavioralProblems">Behavioral Problems</label>
+                                <select id="behavioralProblems" name="behavioralProblems" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group range-group">
+                                <label for="functionalAssessment">Functional Assessment (0-10): <span class="range-val" id="functionalAssessmentVal">5</span></label>
+                                <input type="range" id="functionalAssessment" name="functionalAssessment" min="0" max="10" value="5">
+                            </div>
+                            <div class="input-group range-group">
+                                <label for="adl">ADL Score (0-10): <span class="range-val" id="adlVal">5</span></label>
+                                <input type="range" id="adl" name="adl" min="0" max="10" value="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Symptoms -->
+                    <div class="form-section">
+                        <h3><span class="icon">⚠️</span> Symptoms</h3>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="confusion">Confusion</label>
+                                <select id="confusion" name="confusion" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="disorientation">Disorientation</label>
+                                <select id="disorientation" name="disorientation" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="personalityChanges">Personality Changes</label>
+                                <select id="personalityChanges" name="personalityChanges" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="difficultyTasks">Difficulty Completing Tasks</label>
+                                <select id="difficultyTasks" name="difficultyTasks" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="forgetfulness">Forgetfulness</label>
+                                <select id="forgetfulness" name="forgetfulness" required>
+                                    <option value="">Select...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="clearBtn">Clear Form</button>
+                        <button type="submit" class="btn-primary" id="predictBtn">Run Prediction <span class="icon">⚡</span></button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- View 3: Prediction Output -->
+            <section class="view" id="outputView">
+                <div class="empty-state" id="outputEmptyState">
+                    <span class="empty-icon">📊</span>
+                    <h2>No prediction yet</h2>
+                    <p>Please submit patient data from the Assessment tab to view results.</p>
+                    <button class="btn-primary mt-4" onclick="document.querySelector('[data-target=\'inputView\']').click()">Go to Assessment</button>
+                </div>
+
+                <div class="result-content hidden" id="resultContent">
+                    <div class="view-header">
+                        <h2>Prediction Results</h2>
+                        <p>ANN Model v2.4 Inference Complete.</p>
+                    </div>
+
+                    <div class="result-banner" id="resultBanner">
+                        <span class="banner-icon">🧠</span>
+                        <div class="banner-text">
+                            <h2 id="predictionText">Alzheimer's Detected</h2>
+                            <p id="predictionSubtext">High confidence prediction based on clinical data.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid two-col">
+                        <div class="dashboard-card center-content">
+                            <h3>Risk Probability</h3>
+                            <div class="meter-container">
+                                <div class="risk-meter" id="riskMeter"></div>
+                                <div class="meter-value">
+                                    <span id="probValue">0</span>%
+                                </div>
+                            </div>
+                            <div class="risk-badge" id="riskBadge">High Risk</div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3>Contributing Risk Factors</h3>
+                            <ul class="factor-list" id="factorList">
+                                <!-- Populated via JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card mt-4">
+                        <h3>Recommended Actions</h3>
+                        <ul class="action-list" id="actionList">
+                            <!-- Populated via JS -->
+                        </ul>
+                    </div>
+
+                    <div class="form-actions result-actions mt-4">
+                        <button class="btn-secondary" id="printBtn"><span class="icon">🖨️</span> Print Report</button>
+                        <button class="btn-primary" id="newAssessmentBtn"><span class="icon">🔄</span> New Assessment</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Analyzing patient data with ANN model...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
